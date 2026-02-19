@@ -16,7 +16,7 @@ const Search = () => {
               <div className={`absolute transition-opacity duration-300 ${showHighlight ? "opacity-0" : "opacity-100"}`}>
                 <TypeAnimation
                   className="font-onest font-normal text-[35vh] leading-[1]"
-                  sequence={["prod.", 700, "web", 700, "dev.", 700, "duts", 1000, () => setShowHighlight(true)]}
+                  sequence={["prod", 700, "web", 700, "dev.", 700, "duts", 900, () => setShowHighlight(true)]}
                   wrapper="span"
                   speed={20}
                 />
@@ -48,7 +48,7 @@ const Search = () => {
                 className="h-[33vh] absolute"
                 initial={{ left: "2vw", opacity: 0 }}
                 animate={{
-                  left: showHighlight ? "calc(50% + 15vw)" : "2vw",
+                  left: showHighlight ? "calc(50% + 29vh)" : "2vw",
                   opacity: showHighlight ? 1 : 0
                 }}
                 transition={{ duration: 2, ease: "easeInOut" }}
