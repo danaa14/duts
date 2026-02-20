@@ -2,7 +2,6 @@ import { translate } from "../i18n";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store";
 import GlassUI from "../components/GlassUI";
-import "../pages/Home.css";
 
 interface ServiceProps{
   title: string;

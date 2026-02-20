@@ -7,6 +7,7 @@ import type { AppDispatch } from "../store";
 import type { Language } from "../store/langSlice";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import GlassUI from "./GlassUI";
 
 const allLanguages: Language[] = ["EN", "RO", "RU", "FR"];
 
@@ -97,7 +98,7 @@ const Header = ({ className = "" }: HeaderProps) => {
             }}
           >
             <img
-              className="max-h-[6vh]  md:h-auto ml-[4.68vw]"
+              className="max-h-[6vh] md:h-auto ml-[4.68vw]"
               src="/logo.png"
               alt="DUTS logo"
             />
@@ -207,49 +208,51 @@ const Header = ({ className = "" }: HeaderProps) => {
 
       {/* Mobile Menu */}
         <div
-          className={`md:hidden absolute top-full left-0 w-full overflow-hidden transition-all duration-300 ${
+          className={`md:hidden absolute top-full left-0 w-full z-50 transition-all duration-300 ${
             mobileMenuOpen
               ? "max-h-[500px] opacity-100"
               : "max-h-0 opacity-0"
-          } bg-black/40 backdrop-blur-xl border-t border-white/20 rounded-b-[30px]`}
+          } `}
         >
-          <div className="flex flex-col gap-6 py-6 px-6">
-            {["aboutus", "services", "ourprojects", "yourprojectsteps"].map(
-              (id) => (
-                <button
-                  key={id}
-                  onClick={() => {
-                    document
-                      .getElementById(id)
-                      ?.scrollIntoView({ behavior: "smooth" });
-                    setMobileMenuOpen(false);
-                  }}
-                  className="text-white text-lg text-left"
-                >
-                  {translate(id, language)}
-                </button>
-              )
-            )}
-            <div className="pt-4 border-t border-white/20">
-              <p className="text-white mb-2">Language</p>
-              <div className="flex gap-4">
-                {allLanguages.map((lang) => (
+          <GlassUI className="bg-black">
+            <div className="glass flex flex-col gap-4 py-6 px-6">
+              {["aboutus", "services", "ourprojects", "yourprojectsteps"].map(
+                (id) => (
                   <button
-                    key={lang}
+                    key={id}
                     onClick={() => {
-                      dispatch(setLanguage(lang));
+                      document
+                        .getElementById(id)
+                        ?.scrollIntoView({ behavior: "smooth" });
                       setMobileMenuOpen(false);
-                      }}
-                      className={`text-white ${
-                        lang === language ? "underline" : ""
-                      }`}
-                    >
-                    {lang}
+                    }}
+                    className="text-white text-lg text-center font-medium uppercase bg-transparent"
+                  >
+                    {translate(id, language)}
                   </button>
-                ))}
+                )
+              )}
+              <div className="pt-4 border-t border-white/20">
+                <p className="text-white mb-2">Language</p>
+                <div className="flex gap-4">
+                  {allLanguages.map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => {
+                        dispatch(setLanguage(lang));
+                        setMobileMenuOpen(false);
+                        }}
+                        className={`text-white ${
+                          lang === language ? "underline" : ""
+                        }`}
+                      >
+                      {lang}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </GlassUI>
         </div>
     </div>
   );

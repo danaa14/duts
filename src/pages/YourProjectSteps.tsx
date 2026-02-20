@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { translate } from "../i18n";
 import type { RootState } from "../store";
 import type { Language } from "../store/langSlice";
-import "./Home.css";
 
 const YourProjectStepsStyles: Record<
   Language,

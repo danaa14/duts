@@ -3,7 +3,6 @@ import { translate } from "../i18n";
 import type { RootState } from "../store";
 import { useSelector } from "react-redux";
 import GlassUI from "../components/GlassUI";
-import "./Home.css";
 
 interface AboutUsProps {
   className?: string;

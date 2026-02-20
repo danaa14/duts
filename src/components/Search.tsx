@@ -7,8 +7,8 @@ const Search = () => {
   const [showHighlight, setShowHighlight] = useState(false);
 
   return (
-    <div className="relative overflow-hidden w-[57vw] h-[52vh]">
-      <div className="relative h-full w-[60vw] rounded-l-[500px] overflow-hidden border-[#404040] border-[0.8vw] bg-gradient-border">
+    <div className="relative overflow-hidden w-[97vw] h-[25vh] md:w-[57vw] md:h-[52vh]">
+      <div className="relative h-full w-[100vw] md:w-[60vw] rounded-l-[500px] overflow-hidden border-[#404040] border-[2vw] md:border-[0.8vw]">
           <div className="w-full h-full rounded-l-[500px] bg-glass-radial flex justify-center items-center pl-[7vw]">
             
             <div className="relative w-[57vw] h-[35vh] flex justify-center items-center">

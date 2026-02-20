@@ -3,7 +3,6 @@ import type { RootState } from "../store";
 import { translate } from "../i18n";
 import type { Language } from "../store/langSlice";
 import GlassUI from "../components/GlassUI";
-import "./Home.css";
 
 const ourProjectsStyles: Record<
   Language,
