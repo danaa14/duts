@@ -5,16 +5,32 @@ import AboutUs from "./AboutUs";
 import Services from "./Services";
 import YourProjectSteps from "./YourProjectSteps";
 import OurProjects from "./OurProjects";
+import Button from "../components/Button";
+import { translate } from "../i18n";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store";
+
 
 const Home = () => {
+  const language = useSelector((state: RootState) => state.lang.language);
+
   return (
     <>    
       <Layout>
         <main className="relative bg-dark min-h-screen overflow-hidden">
 
-          <section className="flex justify-between py-[13vh] pt-[11vh] relative z-10">
-            <Aside className="mt-[5vh] w-[29vw] ml-[8.5vw]" />
+          <section className="md:flex md:justify-between md:py-[13vh] pt-[7vh] md:pt-[11vh] relative z-10">
+            <Aside className=" md:mt-[5vh] md:ml-[8.5vw]" />
             <Search />
+            <Button
+                    className="rounded-[368px] md:hidden"
+                    onClick={() => {
+                        const section = document.getElementById("aboutus");
+                        section?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    >
+                    {translate("asidebutton", language)}
+            </Button>
           </section>
 
           <section id="aboutus" className="w-full flex justify-between relative z-10">
