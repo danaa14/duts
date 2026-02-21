@@ -88,8 +88,7 @@ const Header = ({ className = "" }: HeaderProps) => {
         borderWidth={0.07}
       >
         <header className="relative w-full h-full flex justify-between items-center px-4 md:px-0">
-          
-          {/* Logo */}
+      
           <a
             href="#"
             onClick={(e) => {
@@ -104,9 +103,8 @@ const Header = ({ className = "" }: HeaderProps) => {
             />
           </a>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:block w-[44.55vw]">
-            <ul className="flex justify-between items-center list-none font-onest text-sm md:text-[1vw]">
+            <ul className="flex justify-between items-center list-none font-onest  text-sm md:text-[1vw]">
               {["aboutus", "services", "ourprojects", "yourprojectsteps"].map(
                 (id) => (
                   <li key={id}>
@@ -116,7 +114,7 @@ const Header = ({ className = "" }: HeaderProps) => {
                           .getElementById(id)
                           ?.scrollIntoView({ behavior: "smooth" })
                       }
-                      className="text-white bg-transparent hover:opacity-70 transition"
+                      className="font-normal text-white bg-transparent "
                     >
                       {translate(id, language)}
                     </button>
@@ -126,7 +124,6 @@ const Header = ({ className = "" }: HeaderProps) => {
             </ul>
           </nav>
 
-          {/* Right Controls */}
           <div className="flex items-center gap-4 md:mr-[4.68vw]">
 
             {/* Language (Desktop Only) */}

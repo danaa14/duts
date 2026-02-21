@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState, useId } from 'react';
 
-const pxToVw = (px: number, baseWidth = 1440) => {
-  return `${(px / baseWidth) * 100}vw`;
+const pxToVw = (px: number) => {
+  if (typeof window === "undefined") return `${px}px`;
+  return `${(px / window.innerWidth) * 100}vw`;
 };
+
 
 const parseBorderWidth = (value: number | string, containerWidth: number) => {
   if (typeof value === 'number') return value;
@@ -227,20 +229,6 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!containerRef.current) return;
-
-    const resizeObserver = new ResizeObserver(() => {
-      setTimeout(updateDisplacementMap, 0);
-    });
-
-    resizeObserver.observe(containerRef.current);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
     setTimeout(updateDisplacementMap, 0);
   }, [width, height]);
 
@@ -249,10 +237,9 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
       return false;
     }
 
-    const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
     const isFirefox = /Firefox/.test(navigator.userAgent);
 
-    if (isWebkit || isFirefox) {
+    if (isFirefox) {
       return false;
     }
 
@@ -335,7 +322,9 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         } else {
           return {
             ...baseStyles,
-            background: 'rgba(255, 255, 255, 0.25)',
+            background: isDarkMode
+              ? 'rgba(20,20,20,0.6)'
+              : 'rgba(255,255,255,0.6)',
             backdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
             WebkitBackdropFilter: 'blur(12px) saturate(1.8) brightness(1.1)',
             border: '1px solid rgba(255, 255, 255, 0.3)',
