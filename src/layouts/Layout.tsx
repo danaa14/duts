@@ -16,12 +16,12 @@ const Layout = ({ children }: LayoutProps) => {
 
         const scrollY = window.scrollY;
 
-        const parallaxAmount = scrollY * -0.3;
+        const parallaxAmount = scrollY * -0.5;
         lineRef.current.style.backgroundPositionY = `${parallaxAmount}px`;
 
         const isMobile = window.innerWidth < 768;
 
-        const fadeStart = isMobile ? 20 : 50;
+        const fadeStart = isMobile ? 50 : 100;
         const fadeEnd = isMobile ? 120 : 400;
 
         const opacity =
@@ -69,7 +69,7 @@ const Layout = ({ children }: LayoutProps) => {
                 ? "url('/gradientlinemobile.png')"
                 : "url('/gradientline.png')",
                 backgroundSize: isMobile
-                ? "120vw auto"
+                ? "120vw 300vh"
                 : "150vw auto",
                 zIndex: 0,
                 opacity: 0,
