@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../store";
 import { translate } from "../i18n";
 import type { Language } from "../store/langSlice";
-import GlassUI from "../components/GlassUI";
+import GlassUI from "../components/ui/GlassUI";
 
 const ourProjectsStyles: Record<
   Language,
@@ -25,8 +25,7 @@ const OurProjects = () => {
       <h1
         className={`font-onest font-medium text-[3.33vw] ${styles.headingWidth} mx-auto text-justify tracking-[-0.08em] mb-[6vh]`}
       >
-        {translate("ourprojectsheading", language)}
-        <span className="ml-[3vw]">{translate("ourprojectsheadingspan", language)}</span>
+        CASE STUDIES
       </h1>
       <section className="flex justify-center items-center mx-auto">
         <GlassUI className="glass w-[69.53vw] h-[65.83vh] ">

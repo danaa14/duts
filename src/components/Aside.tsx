@@ -1,7 +1,7 @@
 import { translate } from "../i18n";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store";
-import Button from "./Button";
+import Button from "./ui/Button";
 
 interface AsideProps {
   className?: string;
@@ -12,8 +12,7 @@ const Aside = ({ className = "" }: AsideProps) => {
 
     return(
         <aside className={className}>
-            <h1 className=" mx-auto md:w-[29vw] w-[78vw] text-[9vw] md:text-[3.125vw] font-bold font-onest text-center md:text-justify md:tracking-[-0.07em] leading-[120%]">{translate("asideheading", language)}</h1>
-            <p className="hidden md:text-justify md:w-[17vw] md:text-[1.1vw] font-normal font-onest mt-[3vh] tracking-[-0.07em]">{translate("asidesubheading", language)}</p>
+            <h1 className=" mx-auto md:w-[27.5vw] w-[78vw] text-[9vw] md:text-[3.125vw] font-normal uppercase font-onest text-center md:text-justify md:tracking-[-0.07em] leading-[120%]">{translate("asideheading", language)}</h1>
             <div className="hidden md:flex">
                 <Button
                     className="rounded-[368px]"
@@ -24,7 +23,7 @@ const Aside = ({ className = "" }: AsideProps) => {
                     >
                     {translate("asidebutton", language)}
                 </Button>
-                <p className=" md:block w-[10vw] py-[4vh] text-justify font-onest text-[#9A9A9A] text-[0.8vw] ml-[2vw]">{translate("asidetext", language)}</p>
+                
             </div>
         </aside>
     )

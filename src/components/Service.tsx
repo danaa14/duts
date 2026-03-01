@@ -1,7 +1,7 @@
 import { translate } from "../i18n";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store";
-import GlassUI from "../components/GlassUI";
+import GlassUI from "./ui/GlassUI";
 
 interface ServiceProps{
   title: string;
@@ -14,7 +14,7 @@ const Service = ({ title, rightTexts, color, imageSrc}: ServiceProps) => {
     const language = useSelector((state: RootState) => state.lang.language);
 
     return(
-        <GlassUI className="glass w-[26vw] h-[40.4vh] transition-transform duration-300 ease-out hover:scale-[1.1]">
+        <GlassUI radius={59} className="glass w-[26vw] h-[40.4vh] transition-transform duration-300 ease-out hover:scale-[1.1]">
             <div className="w-full h-full ">
                 <section className=" text-left mx-[2.4vw]">
                     <h2 className="font-onest font-semibold text-[2vw] my-[4vh]">{title}</h2>

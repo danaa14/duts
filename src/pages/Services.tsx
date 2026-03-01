@@ -29,10 +29,6 @@ const Services = () => {
 
   return (
     <>
-      <h1 className="font-onest font-medium text-[3.33vw] text-center mb-[6vh] tracking-[-0.08em]">
-        {translate("servicesheading", language)}
-      </h1>
-
       <section className="w-[83.125vw] mx-[8.5vw] grid grid-cols-3 gap-[2.5vw]">
         {services.map((service, index) => (
           <Service
