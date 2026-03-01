@@ -23,16 +23,21 @@ const Home = () => {
           winsLocked ? "" : "snap-y snap-mandatory",
         ].join(" ")}
       >
-        <section className="snap-start h-screen">
+        <section className="snap-start h-screen pt-[20vh]">
           <Main />
         </section>
 
         <section id="wins" className="snap-start h-screen">
           <WinsSection
-            scrollerRef={scrollerRef}
-            onLock={() => setWinsLocked(true)}
-            onUnlock={() => setWinsLocked(false)}
-          />
+          scrollerRef={scrollerRef}
+          onLock={() => setWinsLocked(true)}
+          onUnlock={() => {
+            setWinsLocked(false);
+            requestAnimationFrame(() => {
+              scrollerRef.current?.scrollBy({ top: 2, behavior: "auto" });
+            });
+          }}
+        />
         </section>
 
         <section className="snap-start h-screen">
