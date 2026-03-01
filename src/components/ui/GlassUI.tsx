@@ -4,15 +4,25 @@ import { useId } from "react";
 interface GlassUIProps {
   className?: string;
   children: ReactNode;
+  radius?: number; // NEW
 }
 
-
-const GlassUI = ({ children, className = "" }: GlassUIProps) => {
+const GlassUI = ({
+  children,
+  className = "",
+  radius = 59, // default same as before
+}: GlassUIProps) => {
   const gradientId = useId();
 
   return (
-    <div className={`relative rounded-[59px] ${className}`}>
-      <div className="relative z-10 w-full h-full rounded-[59px] overflow-hidden">
+    <div
+      className={`relative ${className}`}
+      style={{ borderRadius: radius }}
+    >
+      <div
+        className="relative z-10 w-full h-full overflow-hidden"
+        style={{ borderRadius: radius }}
+      >
         {children}
       </div>
 
@@ -30,8 +40,8 @@ const GlassUI = ({ children, className = "" }: GlassUIProps) => {
           y="1"
           width="calc(100% - 2px)"
           height="calc(100% - 2px)"
-          rx="59"
-          ry="59"
+          rx={radius}
+          ry={radius}
           fill="none"
           stroke={`url(#${gradientId})`}
           strokeWidth="2"

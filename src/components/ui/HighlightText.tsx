@@ -1,5 +1,5 @@
 import { motion, type Transition } from "framer-motion"
-import { cn } from "../lib/utils"
+import { cn } from "../../lib/utils"
 
 export interface HighlightTextProps {
   text: string

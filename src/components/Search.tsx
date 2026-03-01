@@ -1,5 +1,5 @@
 import { TypeAnimation } from "react-type-animation";
-import HighlightText from "./HighlightText";
+import HighlightText from "./ui/HighlightText";
 import { useState, useRef} from "react";
 import { motion } from "framer-motion";
 

@@ -1,5 +1,5 @@
-import GlassUI from "../components/GlassUI";
-import Button from "../components/Button";
+import GlassUI from "../components/ui/GlassUI";
+import Button from "../components/ui/Button";
 import { useSelector } from "react-redux";
 import { translate } from "../i18n";
 import type { RootState } from "../store";

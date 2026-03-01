@@ -1,4 +1,4 @@
-import GlassSurface from "./GlassSurface";
+import GlassSurface from "./ui/GlassSurface";
 import type { RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../store/langSlice";
@@ -7,7 +7,7 @@ import type { AppDispatch } from "../store";
 import type { Language } from "../store/langSlice";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import GlassUI from "./GlassUI";
+import GlassUI from "./ui/GlassUI";
 
 const allLanguages: Language[] = ["EN", "RO", "RU", "FR"];
 
