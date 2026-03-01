@@ -33,15 +33,14 @@ const Header = ({ className = "" }: HeaderProps) => {
   });
 
   const updateButtonPosition = () => {
-    if (buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      setButtonPosition({
-        top: rect.top,
-        left: rect.left,
-        width: rect.width,
-        height: rect.height,
-      });
-    }
+    if (!buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    setButtonPosition({
+      top: rect.top,
+      left: rect.left,
+      width: rect.width,
+      height: rect.height,
+    });
   };
 
   const toggleDropdown = () => {
@@ -88,12 +87,16 @@ const Header = ({ className = "" }: HeaderProps) => {
         borderWidth={0.07}
       >
         <header className="relative w-full h-full flex justify-between items-center px-4 md:px-0">
-      
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              const scroller = document.querySelector("main");
+              if (scroller && "scrollTo" in scroller) {
+                (scroller as HTMLElement).scrollTo({ top: 0, behavior: "smooth" });
+              } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
             }}
           >
             <img
@@ -104,28 +107,21 @@ const Header = ({ className = "" }: HeaderProps) => {
           </a>
 
           <nav className="hidden md:block w-[44.55vw]">
-            <ul className="flex justify-between items-center list-none font-onest  text-sm md:text-[1vw]">
-              {["aboutus", "services", "ourprojects", "yourprojectsteps"].map(
-                (id) => (
-                  <li key={id}>
-                    <button
-                      onClick={() =>
-                        document
-                          .getElementById(id)
-                          ?.scrollIntoView({ behavior: "smooth" })
-                      }
-                      className="font-normal text-white bg-transparent "
-                    >
-                      {translate(id, language)}
-                    </button>
-                  </li>
-                )
-              )}
+            <ul className="flex justify-between items-center list-none font-onest text-sm md:text-[1vw]">
+              {["aboutus", "services", "ourprojects", "yourprojectsteps"].map((id) => (
+                <li key={id}>
+                  <button
+                    onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
+                    className="font-normal text-white bg-transparent"
+                  >
+                    {translate(id, language)}
+                  </button>
+                </li>
+              ))}
             </ul>
           </nav>
 
           <div className="flex items-center gap-4 md:mr-[4.68vw]">
-
             {/* Language (Desktop Only) */}
             <div className="relative hidden md:block font-onest z-50">
               <button
@@ -137,7 +133,9 @@ const Header = ({ className = "" }: HeaderProps) => {
                 <img
                   src="/arrowdown.png"
                   alt=""
-                  className={`ml-[0.4vw] w-[0.8vw] transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+                  className={`ml-[0.4vw] w-[0.8vw] transition-transform duration-300 ${
+                    open ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
@@ -147,7 +145,7 @@ const Header = ({ className = "" }: HeaderProps) => {
                     ref={dropdownRef}
                     style={{
                       position: "fixed",
-                      top: buttonPosition.top + buttonPosition.height ,
+                      top: buttonPosition.top + buttonPosition.height,
                       left: buttonPosition.left,
                       width: buttonPosition.width,
                       borderRadius: 12,
@@ -204,53 +202,45 @@ const Header = ({ className = "" }: HeaderProps) => {
       </GlassSurface>
 
       {/* Mobile Menu */}
-        <div
-          className={`md:hidden absolute top-full left-0 w-full z-50 transition-all duration-300 ${
-            mobileMenuOpen
-              ? "max-h-[500px] opacity-100"
-              : "max-h-0 opacity-0"
-          } `}
-        >
-          <GlassUI className="bg-black">
-            <div className="glass flex flex-col gap-4 py-6 px-6">
-              {["aboutus", "services", "ourprojects", "yourprojectsteps"].map(
-                (id) => (
+      <div
+        className={`md:hidden absolute top-full left-0 w-full z-50 transition-all duration-300 ${
+          mobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <GlassUI className="bg-black">
+          <div className="glass flex flex-col gap-4 py-6 px-6">
+            {["aboutus", "services", "ourprojects", "yourprojectsteps"].map((id) => (
+              <button
+                key={id}
+                onClick={() => {
+                  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                  setMobileMenuOpen(false);
+                }}
+                className="text-white text-lg text-center font-medium uppercase bg-transparent"
+              >
+                {translate(id, language)}
+              </button>
+            ))}
+            <div className="pt-4 border-t border-white/20">
+              <p className="text-white mb-2">Language</p>
+              <div className="flex gap-4">
+                {allLanguages.map((lang) => (
                   <button
-                    key={id}
+                    key={lang}
                     onClick={() => {
-                      document
-                        .getElementById(id)
-                        ?.scrollIntoView({ behavior: "smooth" });
+                      dispatch(setLanguage(lang));
                       setMobileMenuOpen(false);
                     }}
-                    className="text-white text-lg text-center font-medium uppercase bg-transparent"
+                    className={`text-white ${lang === language ? "underline" : ""}`}
                   >
-                    {translate(id, language)}
+                    {lang}
                   </button>
-                )
-              )}
-              <div className="pt-4 border-t border-white/20">
-                <p className="text-white mb-2">Language</p>
-                <div className="flex gap-4">
-                  {allLanguages.map((lang) => (
-                    <button
-                      key={lang}
-                      onClick={() => {
-                        dispatch(setLanguage(lang));
-                        setMobileMenuOpen(false);
-                        }}
-                        className={`text-white ${
-                          lang === language ? "underline" : ""
-                        }`}
-                      >
-                      {lang}
-                    </button>
-                  ))}
-                </div>
+                ))}
               </div>
             </div>
-          </GlassUI>
-        </div>
+          </div>
+        </GlassUI>
+      </div>
     </div>
   );
 };

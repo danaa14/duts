@@ -4,13 +4,15 @@ import { useId } from "react";
 interface GlassUIProps {
   className?: string;
   children: ReactNode;
-  radius?: number; // NEW
+  radius?: number;
+  borderWidth?: number; 
 }
 
 const GlassUI = ({
   children,
   className = "",
-  radius = 59, // default same as before
+  radius = 59,
+  borderWidth = 2, 
 }: GlassUIProps) => {
   const gradientId = useId();
 
@@ -36,15 +38,15 @@ const GlassUI = ({
         </defs>
 
         <rect
-          x="1"
-          y="1"
-          width="calc(100% - 2px)"
-          height="calc(100% - 2px)"
+          x={borderWidth / 2}
+          y={borderWidth / 2}
+          width={`calc(100% - ${borderWidth}px)`}
+          height={`calc(100% - ${borderWidth}px)`}
           rx={radius}
           ry={radius}
           fill="none"
           stroke={`url(#${gradientId})`}
-          strokeWidth="2"
+          strokeWidth={borderWidth}
         />
       </svg>
     </div>
