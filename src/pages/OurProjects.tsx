@@ -21,37 +21,16 @@ const OurProjects = () => {
   const styles = ourProjectsStyles[language];
 
   return (
-    <>
+    <section className="mx-[8.5vw]">
       <h1
-        className={`font-onest font-medium text-[3.33vw] ${styles.headingWidth} mx-auto text-justify tracking-[-0.08em] mb-[6vh]`}
+        className={`font-onest font-medium text-[3.33vw] ${styles.headingWidth} tracking-[-0.08em] mb-[6vh]`}
       >
         CASE STUDIES
       </h1>
-      <section className="flex justify-center items-center mx-auto">
-        <GlassUI className="glass w-[69.53vw] h-[65.83vh] ">
-          <article className="w-full h-full flex justify-center items-center">
-            <div className="h-[49vh] flex justify-center items-center">
-              <img src="/corespond.png" alt="exemplu" className="w-[29.4vw] "/>
-              <div className="flex flex-col justify-center items-center ml-[3vw]">
-                <GlassUI className="bg-black/65 w-[21vw] h-[47vh] font-onest">
-                  <div className="px-[2vw] py-[4vh]">
-                    <img src="#" alt="pfp" className="w-[7.3vw] h-[7.3vw] bg-[#0059FF] rounded-[33px]"/>
-                    <h3 className="text-[1.8vw] font-medium pt-[2vh]">Borea Tigan</h3>
-                    <h4 className="text-[#BDBEFF] text-[1vw]">CEO Musarka</h4>
-                    <p className="text-[1vw] pt-[2vh]">
-                      <span className="ml-[1vw]">No</span> fluff, no bullshit — just bold,     unforgettable branding that makes people give a damn.
-                    </p>
-                    <span className="text-[#BDBEFF] text-[2.5vw]">”</span>  
-                  </div>
-                </GlassUI>
-                <hr className="bg-[#F4F2FF] w-[21vw] h-[4px] my-[2.8vh] rounded-[10px] overflow-hidden"/>
-                <hr className=" bg-[#0059FF] h-[4px]"/>
-              </div>
-            </div>
-          </article>
-        </GlassUI>
-      </section>
-    </>
+      <div>
+        
+      </div>
+    </section>
   );
 };
 
